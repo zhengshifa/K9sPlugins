@@ -26,5 +26,6 @@ jobs:
             mkdir -p ~/.config/k9s/script/
           scp: |-
             './*.sh' => ~/.config/k9s/script/
+            './plugins.yml' => ~/.config/k9s/plugins.yaml
           last_ssh: |-
             chmod +x ~/.config/k9s/script/*
