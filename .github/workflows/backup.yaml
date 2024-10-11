@@ -1,0 +1,29 @@
+name: k9s plugins
+
+on:
+  push:
+    branches:
+      - main  # 根据需要调整分支名称
+  workflow_dispatch:  # 添加手动触发
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: copy to Remote Host
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          user: ${{ secrets.DEPLOY_USER }}
+          pass: ${{ secrets.PASS }}
+          connect_timeout: 10s
+          first_ssh: |-
+            rm -rf  ~/.config/k9s/script/*
+            mkdir -p ~/.config/k9s/script/
+          scp: |-
+            './*.sh' => ~/.config/k9s/script/
+          last_ssh: |-
+            chmod +x ~/.config/k9s/script/*

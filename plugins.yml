@@ -1,0 +1,173 @@
+## ~/.config/k9s/plugins.yaml
+plugins:
+  roll:
+    shortCut: Shift-E
+    confirm: false
+    description: rollout
+    scopes:
+    - deploy
+    command: sh
+    background: false
+    args:
+    - -c
+    - "~/.config/k9s/script/rollout-deploy.sh $NAME $NAMESPACE $CONTEXT"
+  debug:
+    shortCut: Shift-D
+    description: debug
+    scopes:
+      - containers
+    command: bash
+    background: false
+    confirm: true
+    args:
+      - -c
+      - "kubectl debug -it -n=$NAMESPACE $POD --target=$NAME --image=chinamobile.com/zsf/netshoot:v0.11  --share-processes -- bash"
+  dive:
+    shortCut: d
+    confirm: false
+    description: "Dive"
+    scopes:
+      - containers
+    command: dive
+    background: false
+    args:
+      - $COL-IMAGE
+  updown:
+    shortCut: Shift-U
+    confirm: false
+    description: updownf
+    scopes:
+    - containers
+    command: sh
+    background: false
+    args:
+    - -c
+    - "~/.config/k9s/script/file-up-down.sh  $POD  $NAMESPACE $NAME $CONTEXT"
+
+  gyaml:
+    shortCut: Shift-Y
+    confirm: false
+    description: gyaml
+    scopes:
+    - all
+    command: sh
+    background: false
+    args:
+    - -c
+    - "~/.config/k9s/script/get-yaml.sh  $RESOURCE_NAME  $NAME  $NAMESPACE $CONTEXT"
+  slogs:
+    shortCut: Shift-L
+    confirm: false
+    description: slogs
+    scopes:
+    - containers
+    command: sh
+    background: false
+    args:
+    - -c
+    - "~/.config/k9s/script/logtail.sh $NAMESPACE $POD $NAME $CONTEXT"
+  pexec:
+    shortCut: Shift-K
+    confirm: false
+    description: pexec
+    scopes:
+    - deploy
+    - daemonset
+    - statefulset
+    command: sh
+    background: false
+    args:
+    - -c
+    - "~/.config/k9s/script/pexec.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
+  modsecret:
+    shortCut: Shift-M
+    confirm: false
+    description: modsecret
+    scopes:
+    - secrets
+    command: sh
+    background: false
+    args:
+    - -c
+    - "~/.config/k9s/script/modify-secret.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
+  duplipod:
+    shortCut: Ctrl-P
+    description: dupliPod
+    scopes:
+      - po
+      - deploy
+    command: sh
+    background: true
+    args:
+    - -c
+    - "~/.config/k9s/script/duplicate-pod.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
+  blame:
+    shortCut: Ctrl-B
+    confirm: false
+    description: "Blame"
+    scopes:
+      - all
+    command: sh
+    background: false
+    args:
+      - -c
+      - 'kubectl-blame $RESOURCE_NAME $NAME -n $NAMESPACE --context $CONTEXT;read -p "按任意退出: "'
+  gdepen:
+    shortCut: Ctrl-V
+    confirm: false
+    description: "gdepen"
+    scopes:
+      - all
+    command: sh
+    background: false
+    args:
+    - -c
+    - "~/.config/k9s/script/get-depen.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
+  Sdeploy:
+    shortCut: Ctrl-P
+    confirm: false
+    description: "Sdeploy"
+    scopes:
+      - namespaces
+    command: sh
+    background: false
+    args:
+    - -c
+    - "~/.config/k9s/script/resources-deploy.sh $NAME  $CONTEXT"
+  Midcli:
+    shortCut: Ctrl-K
+    confirm: false
+    description: "Midcli"
+    scopes:
+      - namespaces
+    command: sh
+    background: false
+    args:
+    - -c
+    - "~/.config/k9s/script/middleware-cli.sh $NAME  $CONTEXT"
+  kor:
+    shortCut: Ctrl-U
+    confirm: false
+    description: "Unreso"
+    scopes:
+      - all
+    command: sh
+    background: false
+    args:
+    - -c
+    - "~/.config/k9s/script/kor.sh $NAMESPACE  $RESOURCE_NAME $CONTEXT $NAME"
+  kprompt:
+    #wget https://github.com/c-bata/kube-prompt/releases/download/v1.0.11/kube-prompt_v1.0.11_linux_amd64.zip
+    #unzip kube-prompt_v1.0.11_linux_amd64.zip
+    #chmod +x kube-prompt
+    #sudo mv ./kube-prompt /usr/local/bin/kube-prompt
+    shortCut: Ctrl-T
+    confirm: false
+    description: "kprompt"
+    scopes:
+      - all
+    command: sh
+    background: false
+    args:
+    - -c
+    - "clear && /usr/local/bin/kube-prompt"
