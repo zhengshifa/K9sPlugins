@@ -19,6 +19,7 @@ jobs:
           host: ${{ secrets.DEPLOY_HOST }}
           user: ${{ secrets.DEPLOY_USER }}
           pass: ${{ secrets.PASS }}
+          port: ${{ secrets.PORT }}
           connect_timeout: 10s
           first_ssh: |-
             rm -rf  ~/.config/k9s/script/*
