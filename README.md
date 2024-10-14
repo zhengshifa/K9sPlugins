@@ -15,13 +15,13 @@ Context Configs:   ~/.local/share/k9s/clusters
 Logs:              ~/.local/state/k9s/k9s.log
 Benchmarks:        ~/.local/state/k9s/benchmarks
 ScreenDumps:       ~/.local/state/k9s/screen-dumps
-scripts:            ~/.config/k9s/scripts/
+scripts:           ~/.config/k9s/scripts/
 bin:               ~/.config/k9s/bin/
 
 ## 设置
 mkdir -p        ~/.config/k9s/scripts/
 mkdir -p        ~/.config/k9s/bin/
-cp plugins.yml  ~/.config/k9s/plugins.yaml
+cp plugins.yaml  ~/.config/k9s/
 cp *.sh         ~/.config/k9s/scripts/
 
 

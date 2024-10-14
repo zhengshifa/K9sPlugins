@@ -25,6 +25,7 @@ jobs:
             rm -rf  ~/.config/k9s/scripts
             mkdir -p ~/.config/k9s
           scp: |-
-            './' => ~/.config/k9s/
+            './scripts' => ~/.config/k9s/
+            './*.yaml' => ~/.config/k9s/
           last_ssh: |-
             chmod +x ~/.config/k9s/scripts/*

@@ -1,4 +1,4 @@
-## ~/.config/k9s/plugins.yaml
+## ~/.config/k9s/plugins.yml
 plugins:
   roll:
     shortCut: Shift-E
