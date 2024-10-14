@@ -10,7 +10,7 @@ plugins:
     background: false
     args:
     - -c
-    - "~/.config/k9s/script/rollout-deploy.sh $NAME $NAMESPACE $CONTEXT"
+    - "~/.config/k9s/scripts/rollout-deploy.sh $NAME $NAMESPACE $CONTEXT"
   debug:
     shortCut: Shift-D
     description: debug
@@ -42,7 +42,7 @@ plugins:
     background: false
     args:
     - -c
-    - "~/.config/k9s/script/file-up-down.sh  $POD  $NAMESPACE $NAME $CONTEXT"
+    - "~/.config/k9s/scripts/file-up-down.sh  $POD  $NAMESPACE $NAME $CONTEXT"
 
   gyaml:
     shortCut: Shift-Y
@@ -54,7 +54,7 @@ plugins:
     background: false
     args:
     - -c
-    - "~/.config/k9s/script/get-yaml.sh  $RESOURCE_NAME  $NAME  $NAMESPACE $CONTEXT"
+    - "~/.config/k9s/scripts/get-yaml.sh  $RESOURCE_NAME  $NAME  $NAMESPACE $CONTEXT"
   slogs:
     shortCut: Shift-L
     confirm: false
@@ -65,7 +65,7 @@ plugins:
     background: false
     args:
     - -c
-    - "~/.config/k9s/script/logtail.sh $NAMESPACE $POD $NAME $CONTEXT"
+    - "~/.config/k9s/scripts/logtail.sh $NAMESPACE $POD $NAME $CONTEXT"
   pexec:
     shortCut: Shift-K
     confirm: false
@@ -78,7 +78,7 @@ plugins:
     background: false
     args:
     - -c
-    - "~/.config/k9s/script/pexec.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
+    - "~/.config/k9s/scripts/pexec.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
   modsecret:
     shortCut: Shift-M
     confirm: false
@@ -89,7 +89,7 @@ plugins:
     background: false
     args:
     - -c
-    - "~/.config/k9s/script/modify-secret.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
+    - "~/.config/k9s/scripts/modify-secret.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
   duplipod:
     shortCut: Ctrl-P
     description: dupliPod
@@ -100,7 +100,7 @@ plugins:
     background: true
     args:
     - -c
-    - "~/.config/k9s/script/duplicate-pod.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
+    - "~/.config/k9s/scripts/duplicate-pod.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
   blame:
     shortCut: Ctrl-B
     confirm: false
@@ -122,7 +122,7 @@ plugins:
     background: false
     args:
     - -c
-    - "~/.config/k9s/script/get-depen.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
+    - "~/.config/k9s/scripts/get-depen.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
   Sdeploy:
     shortCut: Ctrl-P
     confirm: false
@@ -133,7 +133,7 @@ plugins:
     background: false
     args:
     - -c
-    - "~/.config/k9s/script/resources-deploy.sh $NAME  $CONTEXT"
+    - "~/.config/k9s/scripts/resources-deploy.sh $NAME  $CONTEXT"
   Midcli:
     shortCut: Ctrl-K
     confirm: false
@@ -144,7 +144,7 @@ plugins:
     background: false
     args:
     - -c
-    - "~/.config/k9s/script/middleware-cli.sh $NAME  $CONTEXT"
+    - "~/.config/k9s/scripts/middleware-cli.sh $NAME  $CONTEXT"
   kor:
     shortCut: Ctrl-U
     confirm: false
@@ -155,7 +155,7 @@ plugins:
     background: false
     args:
     - -c
-    - "~/.config/k9s/script/kor.sh $NAMESPACE  $RESOURCE_NAME $CONTEXT $NAME"
+    - "~/.config/k9s/scripts/kor.sh $NAMESPACE  $RESOURCE_NAME $CONTEXT $NAME"
   kprompt:
     #wget https://github.com/c-bata/kube-prompt/releases/download/v1.0.11/kube-prompt_v1.0.11_linux_amd64.zip
     #unzip kube-prompt_v1.0.11_linux_amd64.zip
