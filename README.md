@@ -15,14 +15,14 @@ Context Configs:   ~/.local/share/k9s/clusters
 Logs:              ~/.local/state/k9s/k9s.log
 Benchmarks:        ~/.local/state/k9s/benchmarks
 ScreenDumps:       ~/.local/state/k9s/screen-dumps
-script:            ~/.config/k9s/script/
+scripts:           ~/.config/k9s/scripts/
 bin:               ~/.config/k9s/bin/
 
 ## 设置
-mkdir -p        ~/.config/k9s/script/
+mkdir -p        ~/.config/k9s/scripts/
 mkdir -p        ~/.config/k9s/bin/
-cp plugins.yml  ~/.config/k9s/plugins.yaml
-cp *.sh         ~/.config/k9s/script/
+cp plugins.yaml  ~/.config/k9s/
+cp *.sh         ~/.config/k9s/scripts/
 
 
 wget -O  ~/.config/k9s/bin/duplik8s              https://github.com/Telemaco019/duplik8s/releases/download/v0.2.1/duplik8s_Linux_x86_64.tar.gz
@@ -36,5 +36,5 @@ wget -O  ~/.config/k9s/bin/kubectl-modify-secret https://github.com/rajatjindal/
 https://github.com/eslam-gomaa/kptop
 https://github.com/hcavarsan/kftray
 
-chmod +x ~/.config/k9s/script/*
+chmod +x ~/.config/k9s/scripts/*
 chmod +x ~/.config/k9s/bin/*
