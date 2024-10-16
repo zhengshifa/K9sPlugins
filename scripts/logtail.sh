@@ -11,12 +11,11 @@ POD_NAME="$2"
 CONTAINER_NAME="$3"
 CONTEXT="$4"
 
-clear   
+clear
 # 计算给定分钟前的时间点
 read -p "请输入要查询多少分钟的日志: " MINUTES
 LOG_TIME=$(date -d "-$MINUTES minutes" --utc +"%Y-%m-%dT%H:%M:%SZ")
 log_file="/tmp/$1_$2_$3_$(date +%Y-%m-%d_%H_%M_%S).log"
-
 
 
 # 获取指定pod指定container中指定时间点之后的日志
@@ -27,19 +26,19 @@ let log_size=$(stat -c%s  "$log_file")/1024/1024
 read -p "是否保存日志[y/n]: " SIN
 
 
-
 if [ $SIN == 'y' ]; then
 
-if [ $log_size -ge 10 ];then
-clear
-echo "sz $log_file"
-tar -zcvf 
+    if [ $log_size -ge 10 ];then
 
-else
-clear   
-echo "sz $log_file"
-sleep 4
-fi
+        clear
+        echo "sz ${log_file%.*}.tar.gz"
+        tar -zcvf ${log_file%.*}.tar.gz ${log_file}
+
+    else
+        clear   
+        echo "sz $log_file"
+        sleep 3
+    fi
 
 else 
    clear
