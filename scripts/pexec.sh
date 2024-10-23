@@ -21,13 +21,22 @@ LABEL_SELECTOR=$(echo $LABEL_JSON | sed 's/[{}]//g' | sed 's/\"//g' | sed 's/:/=
 # 获取所有属于该 DaemonSet /StatefulSet 的 Pod
 POD_NAMES=$(kubectl get pods -n $NAMESPACE -l "$LABEL_SELECTOR" --context=$CONTEXT -o jsonpath='{.items[*].metadata.name}' | tr ' ' '\n')
 
+if [ "$RESOURCE_NAME" = "namespaces" ]; then
+    POD_NAMES=$(kubectl get pods -n $NAME --context=$CONTEXT -o jsonpath='{.items[*].metadata.name}')
+fi
 
 # 迭代所有 Pod 并执行命令
 for POD in $POD_NAMES; do
     echo "Executing command in pod: $POD"
-    kubectl exec -n $NAMESPACE $POD --context=$CONTEXT  -- /bin/bash -c "timeout 5 $COMMAND"
+
+    if [ "$RESOURCE_NAME" = "namespaces" ]; then
+        kubectl exec -n $NAME $POD --context=$CONTEXT  -- /bin/bash -c "timeout 5 $COMMAND"
+    else
+        kubectl exec -n $NAMESPACE $POD --context=$CONTEXT  -- /bin/bash -c "timeout 5 $COMMAND"
+    fi
+
     echo -e '\n\n'
-    sleep 2
+    sleep 1
 done
 
 read -p "按任意退出: "

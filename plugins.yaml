@@ -74,6 +74,7 @@ plugins:
     - deploy
     - daemonset
     - statefulset
+    - namespaces
     command: sh
     background: false
     args:
