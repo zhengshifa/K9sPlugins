@@ -32,9 +32,8 @@ wget -O  ~/.config/k9s/bin/ketall                https://github.com/corneliuswei
 wget -O  ~/.config/k9s/bin/kubectl-neat          https://github.com/itaysk/kubectl-neat/releases/download/v2.0.4/kubectl-neat_linux_amd64.tar.gz
 wget -O  ~/.config/k9s/bin/kor                   https://github.com/yonahd/kor/releases/download/v0.5.5/kor_Linux_x86_64.tar.gz
 wget -O  ~/.config/k9s/bin/kubectl-modify-secret https://github.com/rajatjindal/kubectl-modify-secret/releases/download/v0.0.47/kubectl-modify-secret_v0.0.47_linux_amd64.tar.gz
-
-https://github.com/eslam-gomaa/kptop
-https://github.com/hcavarsan/kftray
+wget -O  ~/.config/k9s/bin/kptop   https://github.com/eslam-gomaa/kptop
+wget -O  ~/.config/k9s/bin/kftray   https://github.com/hcavarsan/kftray
 
 chmod +x ~/.config/k9s/scripts/*
 chmod +x ~/.config/k9s/bin/*
