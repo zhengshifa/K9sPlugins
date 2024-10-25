@@ -1,0 +1,41 @@
+k9s:
+  liveViewAutoRefresh: true  # Consider enabling this for real-time updates
+  screenDumpDir: ~/.local/state/k9s/screen-dumps
+  refreshRate: 2  # Good for quick updates; adjust if needed based on performance
+  maxConnRetry: 5
+  readOnly: false
+  noExitOnCtrlC: true  # Set to true to prevent accidental exits
+  ui:
+    enableMouse: true  # Enabling mouse can improve navigation
+    headless: false
+    logoless: false
+    crumbsless: false
+    reactive: true  # Enable reactive UI for better user experience
+    noIcons: false
+    defaultsToFullScreen: true  # Useful for maximizing screen real estate
+  skipLatestRevCheck: false
+  disablePodCounting: false
+  shellPod:
+    image: busybox:1.35.0
+    namespace: default
+    limits:
+      cpu: 500m
+      memory: 500Mi
+  imageScans:
+    enable: true  # Consider enabling for security best practices
+    exclusions:
+      namespaces: []  # Specify any namespaces you want to exclude
+      labels: {}  # Specify any labels you want to exclude
+  logger:
+    tail: 100
+    buffer: 5000
+    sinceSeconds: 3600  # Change to 3600 for a more useful recent logs view
+    textWrap: true  # Enable text wrap for easier reading
+    showTime: true  # Show timestamps for log entries
+  thresholds:
+    cpu:
+      critical: 90
+      warn: 80
+    memory:
+      critical: 90
+      warn: 80
