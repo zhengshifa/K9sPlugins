@@ -3,7 +3,7 @@ k9s:
   screenDumpDir: ~/.local/state/k9s/screen-dumps
   refreshRate: 2
   maxConnRetry: 5
-  readOnly: true
+  readOnly: false
   noExitOnCtrlC: false
   ui:
     enableMouse: false
@@ -12,7 +12,7 @@ k9s:
     crumbsless: false
     reactive: false
     noIcons: false
-    defaultsToFullScreen: true
+    defaultsToFullScreen: false
   skipLatestRevCheck: false
   disablePodCounting: false
   shellPod:
