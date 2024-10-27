@@ -25,15 +25,16 @@ cp plugins.yaml  ~/.config/k9s/
 cp *.sh         ~/.config/k9s/scripts/
 
 
-wget -O  ~/.config/k9s/bin/duplik8s              https://github.com/Telemaco019/duplik8s/releases/download/v0.2.1/duplik8s_Linux_x86_64.tar.gz
-wget -O  ~/.config/k9s/bin/kube-lineage          https://github.com/tohjustin/kube-lineage/releases/download/v0.5.0/kube-lineage_linux_amd64.tar.gz
-wget -O  ~/.config/k9s/bin/kubectl-split-yaml    https://github.com/nathforge/kubectl-split-yaml/releases/download/v0.1.0/kubectl-split-yaml_0.1.0_linux_amd64.tar.gz
-wget -O  ~/.config/k9s/bin/ketall                https://github.com/corneliusweig/ketall/releases/download/v1.3.8/get-all-amd64-linux.tar.gz
-wget -O  ~/.config/k9s/bin/kubectl-neat          https://github.com/itaysk/kubectl-neat/releases/download/v2.0.4/kubectl-neat_linux_amd64.tar.gz
-wget -O  ~/.config/k9s/bin/kor                   https://github.com/yonahd/kor/releases/download/v0.5.5/kor_Linux_x86_64.tar.gz
-wget -O  ~/.config/k9s/bin/kubectl-modify-secret https://github.com/rajatjindal/kubectl-modify-secret/releases/download/v0.0.47/kubectl-modify-secret_v0.0.47_linux_amd64.tar.gz
+
+wget -O- https://gh.con.sh/https://github.com/Telemaco019/duplik8s/releases/download/v0.2.1/duplik8s_Linux_x86_64.tar.gz               |tar -xz -C   ~/.config/k9s/bin/          
+wget -O- https://gh.con.sh/https://github.com/tohjustin/kube-lineage/releases/download/v0.5.0/kube-lineage_linux_amd64.tar.gz               |tar -xz -C   ~/.config/k9s/bin/     
+wget -O- https://gh.con.sh/https://github.com/nathforge/kubectl-split-yaml/releases/download/v0.1.0/kubectl-split-yaml_0.1.0_linux_amd64.tar.gz               |tar -xz -C   ~/.config/k9s/bin/  
+wget -O- https://gh.con.sh/https://github.com/corneliusweig/ketall/releases/download/v1.3.8/get-all-amd64-linux.tar.gz               |tar -xz -C   ~/.config/k9s/bin/         
+wget -O- https://gh.con.sh/https://github.com/itaysk/kubectl-neat/releases/download/v2.0.4/kubectl-neat_linux_amd64.tar.gz               |tar -xz -C   ~/.config/k9s/bin/     
+wget -O- https://gh.con.sh/https://github.com/yonahd/kor/releases/download/v0.5.5/kor_Linux_x86_64.tar.gz               |tar -xz -C   ~/.config/k9s/bin/                 
+wget -O- https://gh.con.sh/https://github.com/rajatjindal/kubectl-modify-secret/releases/download/v0.0.47/kubectl-modify-secret_v0.0.47_linux_amd64.tar.gz               |tar -xz -C   ~/.config/k9s/bin/
 #wget -O  ~/.config/k9s/bin/kptop   https://github.com/eslam-gomaa/kptop
-wget -O  ~/.config/k9s/bin/kftray   https://github.com/hcavarsan/kftray/releases/download/v0.14.9/kftui_linux_amd64
+wget -O- https://gh.con.sh/https://github.com/hcavarsan/kftray/releases/download/v0.14.9/kftui_linux_amd64  |tar xz -C ~/.config/k9s/bin
 
 chmod +x ~/.config/k9s/scripts/*
 chmod +x ~/.config/k9s/bin/*

@@ -12,4 +12,4 @@ RESOURCE_NAME=$2
 CONTEXT=$3
 NAME=$4
 
-kubectl modify-secret $NAME -n $NAMESPACE --context=$CONTEXT
+kubectl modify_secret $NAME -n $NAMESPACE --context=$CONTEXT
