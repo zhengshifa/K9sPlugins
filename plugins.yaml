@@ -21,7 +21,7 @@ plugins:
     confirm: true
     args:
       - -c
-      - "kubectl debug -it -n=$NAMESPACE $POD --target=$NAME --image=chinamobile.com/zsf/netshoot:v0.11  --share-processes -- bash"
+      - "kubectl debug -it -n=$NAMESPACE $POD --target=$NAME --image=netshoot:v0.11  --share-processes -- bash"
   dive:
     shortCut: d
     confirm: false
