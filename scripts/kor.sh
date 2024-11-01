@@ -10,7 +10,7 @@ CONTEXT=$3
 NAME=$4
 
 if [ $2 == namespaces ];then
-    kor clusterrole,configmap,customresourcedefinition,deployment,daemonset,persistentvolume,persistentvolumeclaim,role,secret,serviceaccount,finalizer,StatefulSet,Job   -n $NAMESPACE --show-reason --context $CONTEXT
+    kor clusterrole,configmap,customresourcedefinition,deployment,daemonset,persistentvolume,persistentvolumeclaim,role,secret,serviceaccount,finalizer,StatefulSet,Job   -n $NAME --show-reason --context $CONTEXT
 else 
     kor $RESOURCE_NAME  -n $NAMESPACE --show-reason --context $CONTEXT
 fi
