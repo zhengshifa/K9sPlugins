@@ -35,6 +35,8 @@ wget -O- https://gh.con.sh/https://github.com/yonahd/kor/releases/download/v0.5.
 wget -O- https://gh.con.sh/https://github.com/rajatjindal/kubectl-modify-secret/releases/download/v0.0.47/kubectl-modify-secret_v0.0.47_linux_amd64.tar.gz               |tar -xz -C   ~/.config/k9s/bin/
 #wget -O  ~/.config/k9s/bin/kptop   https://github.com/eslam-gomaa/kptop
 wget -O- https://gh.con.sh/https://github.com/hcavarsan/kftray/releases/download/v0.14.9/kftui_linux_amd64  |tar xz -C ~/.config/k9s/bin
+wget -O- https://gh.con.sh/https://github.com/tohjustin/kube-lineage/releases/download/v0.5.0/kube-lineage_linux_amd64.tar.gz  |tar xz -C ~/.config/k9s/bin
+
 
 chmod +x ~/.config/k9s/scripts/*
 chmod +x ~/.config/k9s/bin/*
