@@ -9,10 +9,12 @@ RESOURCE_NAME=$2
 CONTEXT=$3
 NAME=$4
 
+kubectx $CONTEXT
 if [ $2 == namespaces ];then
-    kor clusterrole,configmap,customresourcedefinition,deployment,daemonset,persistentvolume,persistentvolumeclaim,role,secret,serviceaccount,finalizer,StatefulSet,Job   -n $NAME --show-reason --context $CONTEXT
+    kor clusterrole,configmap,customresourcedefinition,deployment,daemonset,persistentvolume,persistentvolumeclaim,role,secret,serviceaccount,finalizer,StatefulSet,Job   -n $NAME --show-reason
 else 
-    kor $RESOURCE_NAME  -n $NAMESPACE --show-reason --context $CONTEXT
+    #kor $RESOURCE_NAME  -n $NAMESPACE --show-reason --context $CONTEXT 不支持上下文选择
+    kor $RESOURCE_NAME  -n $NAMESPACE --show-reason
 fi
 
 read -p "按任意退出: "
