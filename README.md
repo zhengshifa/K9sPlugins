@@ -36,7 +36,11 @@ wget -O- https://gh.con.sh/https://github.com/rajatjindal/kubectl-modify-secret/
 #wget -O  ~/.config/k9s/bin/kptop   https://github.com/eslam-gomaa/kptop
 wget -O- https://gh.con.sh/https://github.com/hcavarsan/kftray/releases/download/v0.14.9/kftui_linux_amd64  |tar xz -C ~/.config/k9s/bin
 wget -O- https://gh.con.sh/https://github.com/tohjustin/kube-lineage/releases/download/v0.5.0/kube-lineage_linux_amd64.tar.gz  |tar xz -C ~/.config/k9s/bin
+wget -O /tmp/kubectl-browse-pvc-linux.zip  https://github.com/clbx/kubectl-browse-pvc/releases/download/v1.0.7/kubectl-browse-pvc-linux.zip && unzip /tmp/kubectl-browse-pvc-linux.zip -d ~/.config/k9s/bin && rm -rf /tmp/kubectl-browse-pvc-linux.zip
+
+
 wget -O /tmp/kube-prompt_v1.0.11_linux_amd64.zip https://github.com/c-bata/kube-prompt/releases/download/v1.0.11/kube-prompt_v1.0.11_linux_amd64.zip && unzip /tmp/kube-prompt_v1.0.11_linux_amd64.zip -d ~/.config/k9s/bin && rm -rf /tmp/kube-prompt_v1.0.11_linux_amd64.zip
+
 
 chmod +x ~/.config/k9s/scripts/*
 chmod +x ~/.config/k9s/bin/*
