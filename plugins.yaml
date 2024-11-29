@@ -172,14 +172,3 @@ plugins:
     args:
     - -c
     - "clear && /usr/local/bin/kube-prompt"
-  brow-pvc:
-    shortCut: Ctrl-L
-    description: "brow-pvc"
-    scopes:
-      - persistentvolumeclaims
-    command: bash
-    background: false
-    confirm: true
-    args:
-      - -c
-      - "kubectl browse-pvc -n $NAMESPACE $NAME"
