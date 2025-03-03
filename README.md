@@ -1,10 +1,10 @@
 # k9s guide
 
 ## 项目概述
-K9sPlugins 是一个为 k9s Kubernetes CLI 工具提供增强功能的插件集合。它包含：
-- 自定义插件：通过 plugins.yaml 定义
-- 实用脚本：位于 scripts 目录下
-- 二进制工具：位于 bin 目录下
+K9sPlugins 是一个为 k9s Kubernetes CLI 工具提供增强功能的插件集合。它包含:
+- 自定义插件:通过 plugins.yaml 定义
+- 实用脚本:位于 scripts 目录下
+- 二进制工具:位于 bin 目录下
 
 ## 官方地址
 https://github.com/derailed/k9s
@@ -25,7 +25,7 @@ scripts:           ~/.config/k9s/scripts/
 bin:               ~/.config/k9s/bin/
 
 ## 插件说明
-plugins.yaml 中定义了以下常用插件：
+plugins.yaml 中定义了以下常用插件:
 - duplicate-pod: 复制Pod配置
 - file-up-down: 文件上传下载
 - get-depen: 获取资源依赖关系
@@ -71,19 +71,19 @@ chmod +x ~/.config/k9s/bin/*
 ```
 
 ## 使用指南
-1. 启动k9s：
+1. 启动k9s:
    ```bash
    k9s
    ```
 
-2. 使用插件：
+2. 使用插件:
    - 按 `:` 进入命令模式
-   - 输入插件名称，如 `duplicate-pod`
+   - 输入插件名称,如 `duplicate-pod`
    - 按提示操作
 
-3. 常用快捷键：
-   - `d`：描述资源
-   - `e`：编辑资源
-   - `l`：查看日志
-   - `s`：进入Shell
-   - `/`：搜索资源
+3. 常用快捷键:
+   - `d`:描述资源
+   - `e`:编辑资源
+   - `l`:查看日志
+   - `s`:进入Shell
+   - `/`:搜索资源

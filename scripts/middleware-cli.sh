@@ -40,6 +40,6 @@ select service in "${options[@]}"; do
     kubectl run --rm -it  -n ${NAMESPACE}  --context=${CONTEXT} "$pod_name" --image="$image_name" --restart=Never -- sh
     break
   else
-    echo "无效选项，请重新选择。"
+    echo "无效选项,请重新选择。"
   fi
 done
