@@ -16,4 +16,4 @@ else
     RESOURCE_NAME=pod
 fi
 
-kubectl duplicate $RESOURCE_NAME $NAME -n $NAMESPACE --context $CONTEXT
+duplik8s $RESOURCE_NAME $NAME -n $NAMESPACE --context $CONTEXT

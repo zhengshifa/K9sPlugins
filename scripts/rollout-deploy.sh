@@ -1,4 +1,5 @@
 #!/bin/bash
+
 export PATH=$PATH:~/.config/k9s/bin
 
 ## 回滚  deploy镜像版本

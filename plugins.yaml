@@ -21,7 +21,7 @@ plugins:
     confirm: true
     args:
       - -c
-      - "kubectl debug -it -n=$NAMESPACE $POD --target=$NAME --image=netshoot:v0.11  --share-processes -- bash"
+      - "kubectl debug -it -n=$NAMESPACE $POD --target=$NAME --image=easzlab.io.local:5000/netshoot:latest  --share-processes -- bash"
   dive:
     shortCut: d
     confirm: false
@@ -32,6 +32,7 @@ plugins:
     background: false
     args:
       - $COL-IMAGE
+
   updown:
     shortCut: Shift-U
     confirm: false
@@ -92,13 +93,13 @@ plugins:
     - -c
     - "~/.config/k9s/scripts/modify-secret.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
   duplipod:
-    shortCut: Ctrl-P
+    shortCut: Shift-C
     description: dupliPod
     scopes:
       - po
       - deploy
     command: sh
-    background: true
+    background: false
     args:
     - -c
     - "~/.config/k9s/scripts/duplicate-pod.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
@@ -111,8 +112,9 @@ plugins:
     command: sh
     background: false
     args:
-      - -c
-      - 'kubectl-blame $RESOURCE_NAME $NAME -n $NAMESPACE --context $CONTEXT;read -p "按任意退出: "'
+    - -c
+    - "~/.config/k9s/scripts/blame.sh $RESOURCE_NAME $NAME $NAMESPACE $CONTEXT"
+    #- "~/.config/k9s/scripts/test.sh $RESOURCE_NAME $NAME $NAMESPACE $CONTEXT"
   gdepen:
     shortCut: Ctrl-V
     confirm: false
@@ -171,7 +173,7 @@ plugins:
     background: false
     args:
     - -c
-    - "clear && /usr/local/bin/kube-prompt"
+    - "clear && ~/.config/k9s/bin/kube-prompt"
   gonzo:
     shortCut: Ctrl-L
     description: "Gonzo log analysis"
@@ -181,4 +183,4 @@ plugins:
     background: false
     args:
       - -c
-      - "kubectl logs -f $NAME -n $NAMESPACE --context $CONTEXT | gonzo"
+      - "kubectl logs --tail=100 -f $NAME -n $NAMESPACE --context $CONTEXT | ~/.config/k9s/bin/gonzo"
