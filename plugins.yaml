@@ -127,7 +127,7 @@ plugins:
     - -c
     - "~/.config/k9s/scripts/get-depen.sh $NAMESPACE $RESOURCE_NAME $CONTEXT $NAME"
   Sdeploy:
-    shortCut: Ctrl-P
+    shortCut: Shift-P
     confirm: false
     description: "Sdeploy"
     scopes:
@@ -137,6 +137,8 @@ plugins:
     args:
     - -c
     - "~/.config/k9s/scripts/resources-deploy.sh $NAME  $CONTEXT"
+    #- "~/.config/k9s/scripts/test.sh $RESOURCE_NAME $NAME $NAMESPACE $CONTEXT"
+
   Midcli:
     shortCut: Ctrl-K
     confirm: false
@@ -184,3 +186,13 @@ plugins:
     args:
       - -c
       - "kubectl logs --tail=100 -f $NAME -n $NAMESPACE --context $CONTEXT | ~/.config/k9s/bin/gonzo"
+  get-images:
+    shortCut: Shift-I
+    description: "get-images"
+    scopes:
+      - namespaces
+    command: sh
+    background: false
+    args:
+    - -c
+    - "clear && ~/.config/k9s/scripts/get-images.sh $NAMESPACE $CONTEXT"

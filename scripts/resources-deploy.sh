@@ -1,10 +1,15 @@
 #!/bin/bash
 export PATH=$PATH:~/.config/k9s/bin
 
-##实现简单部署pod/deploy/sts资源
+##实现简单部署 pod/deploy/sts 资源
 
 NAMESPACE=$1
 CONTEXT=$2
+
+# 默认值配置
+DEFAULT_IMAGE="easzlab.io.local:5000/netshoot:latest"
+DEFAULT_REPLICAS=3
+DEFAULT_CONTAINER_PORT=80
 
 # Function to create Pod YAML
 create_pod() {
@@ -21,7 +26,7 @@ spec:
   - name: $META_NAME-container
     image: $IMAGE
     ports:
-    - containerPort: 80
+    - containerPort: $CONTAINER_PORT
     command: ["/bin/sh", "-c"]
     args: ["tail -f /dev/null"]
 EOF
@@ -35,11 +40,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: $META_NAME
-  namespace: $NAMESPACE  
+  namespace: $NAMESPACE
   labels:
     app: $META_NAME
 spec:
-  replicas: 3
+  replicas: $REPLICAS
   selector:
     matchLabels:
       app: $META_NAME
@@ -52,7 +57,7 @@ spec:
       - name: $META_NAME-container
         image: $IMAGE
         ports:
-        - containerPort: 80
+        - containerPort: $CONTAINER_PORT
         command: ["/bin/sh", "-c"]
         args: ["tail -f /dev/null"]
 EOF
@@ -66,12 +71,12 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: $META_NAME
-  namespace: $NAMESPACE  
+  namespace: $NAMESPACE
   labels:
     app: $META_NAME
 spec:
   serviceName: "$META_NAME-service"
-  replicas: 3
+  replicas: $REPLICAS
   selector:
     matchLabels:
       app: $META_NAME
@@ -84,7 +89,7 @@ spec:
       - name: $META_NAME-container
         image: $IMAGE
         ports:
-        - containerPort: 80
+        - containerPort: $CONTAINER_PORT
         command: ["/bin/sh", "-c"]
         args: ["tail -f /dev/null"]
 #  volumeClaimTemplates:
@@ -122,7 +127,7 @@ spec:
       - name: $META_NAME-container
         image: $IMAGE
         ports:
-        - containerPort: 80
+        - containerPort: $CONTAINER_PORT
         command: ["/bin/sh", "-c"]
         args: ["tail -f /dev/null"]
 EOF
@@ -138,26 +143,34 @@ echo "3. StatefulSet"
 echo "4. DaemonSet"
 read -p "Enter your choice (1/2/3/4): " CHOICE
 
+# Prompt for common inputs first
+read -p "Enter the image name (e.g., nginx:latest) [$DEFAULT_IMAGE]: " IMAGE
+IMAGE=${IMAGE:-$DEFAULT_IMAGE}
+
+read -p "Enter the resource name: " META_NAME
+while [ -z "$META_NAME" ]; do
+  echo "Resource name cannot be empty. Please try again."
+  read -p "Enter the resource name: " META_NAME
+done
+
+read -p "Enter replicas count [$DEFAULT_REPLICAS]: " REPLICAS
+REPLICAS=${REPLICAS:-$DEFAULT_REPLICAS}
+
+read -p "Enter container port [$DEFAULT_CONTAINER_PORT]: " CONTAINER_PORT
+CONTAINER_PORT=${CONTAINER_PORT:-$DEFAULT_CONTAINER_PORT}
+
 # Create the corresponding YAML file based on user choice and apply it
 case $CHOICE in
   1)
-    read -p "Enter the image name (e.g., nginx:latest): " IMAGE
-    read -p "Enter the resource name: " META_NAME  
     create_pod
     ;;
   2)
-    read -p "Enter the image name (e.g., nginx:latest): " IMAGE
-    read -p "Enter the resource name: " META_NAME    
     create_deployment
     ;;
   3)
-    read -p "Enter the image name (e.g., nginx:latest): " IMAGE
-    read -p "Enter the resource name: " META_NAME    
     create_statefulset
     ;;
   4)
-    read -p "Enter the image name (e.g., nginx:latest): " IMAGE
-    read -p "Enter the resource name: " META_NAME    
     create_daemonset
     ;;
   *)
@@ -175,4 +188,4 @@ else
   echo "Failed to create ${META_NAME}. Please check the YAML file and try again."
 fi
 rm -rf /tmp/${META_NAME}.yaml
-read -p "按任意退出: "
+read -p "按任意退出："
