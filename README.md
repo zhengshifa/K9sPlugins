@@ -65,8 +65,8 @@ wget -O- https://github.com/hcavarsan/kftray/releases/download/v0.14.9/kftui_lin
 wget -O /tmp/kubectl-browse-pvc-linux.zip https://github.com/clbx/kubectl-browse-pvc/releases/download/v1.0.7/kubectl-browse-pvc-linux.zip && unzip /tmp/kubectl-browse-pvc-linux.zip -d ~/.config/k9s/bin && rm -rf /tmp/kubectl-browse-pvc-linux.zip
 wget -O /tmp/kube-prompt_v1.0.11_linux_amd64.zip https://github.com/c-bata/kube-prompt/releases/download/v1.0.11/kube-prompt_v1.0.11_linux_amd64.zip && unzip /tmp/kube-prompt_v1.0.11_linux_amd64.zip -d ~/.config/k9s/bin && rm -rf /tmp/kube-prompt_v1.0.11_linux_amd64.zip
 
-https://github.com/knight42/kubectl-blame/releases/download/v0.0.12/kubectl-blame-v0.0.12-linux-amd64.tar.gz 
-https://github.com/control-theory/gonzo/releases/download/v0.3.0/gonzo-0.3.0-linux-amd64.tar.gz
+wget -O- https://github.com/knight42/kubectl-blame/releases/download/v0.0.12/kubectl-blame-v0.0.12-linux-amd64.tar.gz | tar -xz -C ~/.config/k9s/bin/
+wget -O- https://github.com/control-theory/gonzo/releases/download/v0.3.0/gonzo-0.3.0-linux-amd64.tar.gz | tar -xz -C ~/.config/k9s/bin/
 
 
 # 设置执行权限
