@@ -195,4 +195,5 @@ plugins:
     background: false
     args:
     - -c
-    - "clear && ~/.config/k9s/scripts/get-images.sh $NAMESPACE $CONTEXT"
+    - "clear && ~/.config/k9s/scripts/get-images.sh $NAME $CONTEXT"
+    #- "~/.config/k9s/scripts/test.sh $RESOURCE_NAME $NAME $NAMESPACE $CONTEXT"
