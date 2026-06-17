@@ -42,6 +42,8 @@ plugins.yaml 中定义了以下常用插件:
 - rbac-user: 用户权限管理
 - resources-deploy: 资源部署
 - rollout-deploy: 滚动更新管理
+- llm-benchmark: LLM benchmark Job 启动（基于 job.yaml 模板，command 可自定义）
+- rdma-train: 多机 RDMA 训练任务启动（**支持 1/2/4/6/8 节点**；默认从 8 节点池取，可手动指定 hostname；8×GPU + IB + NFS；command 用 `__NODE_RANK__` 占位）
 
 ## 安装设置
 ```bash
@@ -67,6 +69,8 @@ wget -O /tmp/kube-prompt_v1.0.11_linux_amd64.zip https://github.com/c-bata/kube-
 
 wget -O- https://github.com/knight42/kubectl-blame/releases/download/v0.0.12/kubectl-blame-v0.0.12-linux-amd64.tar.gz | tar -xz -C ~/.config/k9s/bin/
 wget -O- https://github.com/control-theory/gonzo/releases/download/v0.3.0/gonzo-0.3.0-linux-amd64.tar.gz | tar -xz -C ~/.config/k9s/bin/
+wget -O- https://github.com/ratulbasak/kubectl-cleaner/releases/download/v0.1.0/kubectl-cleaner_linux_amd64.tar.gz | tar -xz -C ~/.config/k9s/bin/
+
 
 
 # 设置执行权限

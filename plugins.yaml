@@ -21,7 +21,7 @@ plugins:
     confirm: true
     args:
       - -c
-      - "kubectl debug -it -n=$NAMESPACE $POD --target=$NAME --image=easzlab.io.local:5000/netshoot:latest  --share-processes -- bash"
+      - "kubectl debug -it -n=$NAMESPACE $POD --target=$NAME --image=easzlab.io.local:30500/netshoot:latest  --share-processes -- bash"
   dive:
     shortCut: d
     confirm: false
@@ -55,7 +55,9 @@ plugins:
     background: false
     args:
     - -c
-    - "~/.config/k9s/scripts/get-yaml.sh  $RESOURCE_NAME  $NAME  $NAMESPACE $CONTEXT"
+    #- "~/.config/k9s/scripts/get-yaml.sh  $RESOURCE_NAME  $NAME  $NAMESPACE $CONTEXT"
+    - "~/.config/k9s/scripts/test.sh $RESOURCE_NAME  $NAME  $NAMESPACE $CONTEXT"
+
   slogs:
     shortCut: Shift-L
     confirm: false
@@ -197,3 +199,26 @@ plugins:
     - -c
     - "clear && ~/.config/k9s/scripts/get-images.sh $NAME $CONTEXT"
     #- "~/.config/k9s/scripts/test.sh $RESOURCE_NAME $NAME $NAMESPACE $CONTEXT"
+
+  llm-benchmark:
+    shortCut: Shift-L
+    description: "llm-benchmark"
+    scopes:
+      - jobs
+    command: sh
+    background: false
+    confirm: false
+    args:
+    - -c
+    - "~/.config/k9s/scripts/llm-benchmark.sh $NAME $CONTEXT"
+  rdma-train:
+    shortCut: Shift-Q
+    description: "rdma-train"
+    scopes:
+      - namespaces
+    command: sh
+    background: false
+    confirm: false
+    args:
+    - -c
+    - "~/.config/k9s/scripts/rdma-train.sh $NAME $CONTEXT"

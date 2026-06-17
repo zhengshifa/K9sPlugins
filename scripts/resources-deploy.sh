@@ -7,7 +7,7 @@ NAMESPACE=$1
 CONTEXT=$2
 
 # 默认值配置
-DEFAULT_IMAGE="easzlab.io.local:5000/netshoot:latest"
+DEFAULT_IMAGE="easzlab.io.local:30500/netshoot:latest"
 DEFAULT_REPLICAS=3
 DEFAULT_CONTAINER_PORT=80
 
