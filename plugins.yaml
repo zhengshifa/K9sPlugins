@@ -11,9 +11,9 @@ plugins:
     args:
     - -c
     - "~/.config/k9s/scripts/rollout-deploy.sh $NAME $NAMESPACE $CONTEXT"
-  debug:
+  pod-debug:
     shortCut: Shift-D
-    description: debug
+    description: pod-debug
     scopes:
       - containers
     command: bash
@@ -22,6 +22,17 @@ plugins:
     args:
       - -c
       - "kubectl debug -it -n=$NAMESPACE $POD --target=$NAME --image=easzlab.io.local:30500/netshoot:latest  --share-processes -- bash"
+  node-debug:
+    shortCut: Shift-D
+    description: node-debug
+    scopes:
+      - node
+    command: bash
+    background: false
+    confirm: true
+    args:
+      - -c
+      - "kubectl debug node/$NAME -it --image=easzlab.io.local:30500/netshoot:latest --share-processes -- bash"
   dive:
     shortCut: d
     confirm: false
@@ -222,3 +233,14 @@ plugins:
     args:
     - -c
     - "~/.config/k9s/scripts/rdma-train.sh $NAME $CONTEXT"
+  browse-pvc:
+    shortCut: Shift-B
+    description: "browse-pvc"
+    scopes:
+      - pvc
+    command: sh
+    background: false
+    confirm: false
+    args:
+    - -c
+    - "clear && ~/.config/k9s/bin/kubectl-browse-pvc --image easzlab.io.local:30500/netshoot:latest  -n $NAMESPACE $NAME"

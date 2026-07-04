@@ -46,7 +46,7 @@ plugins.yaml 中定义了以下常用插件:
 - rdma-train: 多机 RDMA 训练任务启动（**支持 1/2/4/6/8 节点**；默认从 8 节点池取，可手动指定 hostname；8×GPU + IB + NFS；command 用 `__NODE_RANK__` 占位）
 
 ## 安装设置
-```bash
+
 # 创建必要目录
 mkdir -p ~/.config/k9s/scripts/
 mkdir -p ~/.config/k9s/bin/
@@ -76,7 +76,7 @@ wget -O- https://github.com/ratulbasak/kubectl-cleaner/releases/download/v0.1.0/
 # 设置执行权限
 chmod +x ~/.config/k9s/scripts/*
 chmod +x ~/.config/k9s/bin/*
-```
+find ~/.config/k9s/scripts/ -type f -exec dos2unix {} \;
 
 ## 使用指南
 1. 启动k9s:
