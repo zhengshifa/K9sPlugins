@@ -10,6 +10,10 @@ CONTEXT=$2
 DEFAULT_IMAGE="easzlab.io.local:30500/netshoot:latest"
 DEFAULT_REPLICAS=3
 DEFAULT_CONTAINER_PORT=80
+DEFAULT_VOLUME_NAME="corpus"
+DEFAULT_MOUNT_PATH="/tmp/data"
+DEFAULT_NFS_SERVER="192.168.9.120"
+DEFAULT_NFS_PATH="/mnt/models"
 
 # Function to create Pod YAML
 create_pod() {
@@ -29,6 +33,8 @@ spec:
     - containerPort: $CONTAINER_PORT
     command: ["/bin/sh", "-c"]
     args: ["tail -f /dev/null"]
+$VOLUME_MOUNT
+$VOLUME_DEF
 EOF
   echo "Pod YAML has been created in ${META_NAME}.yaml"
 }
@@ -60,6 +66,8 @@ spec:
         - containerPort: $CONTAINER_PORT
         command: ["/bin/sh", "-c"]
         args: ["tail -f /dev/null"]
+$VOLUME_MOUNT
+$VOLUME_DEF
 EOF
   echo "Deployment YAML has been created in ${META_NAME}.yaml"
 }
@@ -92,6 +100,8 @@ spec:
         - containerPort: $CONTAINER_PORT
         command: ["/bin/sh", "-c"]
         args: ["tail -f /dev/null"]
+$VOLUME_MOUNT
+$VOLUME_DEF
 #  volumeClaimTemplates:
 #  - metadata:
 #      name: $META_NAME-pvc
@@ -130,6 +140,8 @@ spec:
         - containerPort: $CONTAINER_PORT
         command: ["/bin/sh", "-c"]
         args: ["tail -f /dev/null"]
+$VOLUME_MOUNT
+$VOLUME_DEF
 EOF
   echo "DaemonSet YAML has been created in ${META_NAME}.yaml"
 }
@@ -158,6 +170,41 @@ REPLICAS=${REPLICAS:-$DEFAULT_REPLICAS}
 
 read -p "Enter container port [$DEFAULT_CONTAINER_PORT]: " CONTAINER_PORT
 CONTAINER_PORT=${CONTAINER_PORT:-$DEFAULT_CONTAINER_PORT}
+
+# 询问是否挂载 NFS 卷
+read -p "Mount NFS volume? (y/N): " MOUNT_VOLUME
+MOUNT_VOLUME=${MOUNT_VOLUME:-N}
+
+VOLUME_MOUNT=""
+VOLUME_DEF=""
+if [[ "$MOUNT_VOLUME" =~ ^[Yy]$ ]]; then
+  VOLUME_NAME=${VOLUME_NAME:-$DEFAULT_VOLUME_NAME}
+  MOUNT_PATH=${MOUNT_PATH:-$DEFAULT_MOUNT_PATH}
+
+  read -p "Enter NFS server [$DEFAULT_NFS_SERVER]: " NFS_SERVER
+  NFS_SERVER=${NFS_SERVER:-$DEFAULT_NFS_SERVER}
+
+  read -p "Enter NFS path [$DEFAULT_NFS_PATH]: " NFS_PATH
+  NFS_PATH=${NFS_PATH:-$DEFAULT_NFS_PATH}
+
+  VOLUME_MOUNT="    volumeMounts:
+    - name: ${VOLUME_NAME}
+      mountPath: ${MOUNT_PATH}"
+
+  VOLUME_DEF="  volumes:
+  - name: ${VOLUME_NAME}
+    nfs:
+      server: ${NFS_SERVER}
+      path: ${NFS_PATH}"
+
+  # Deployment/StatefulSet/DaemonSet 相对 Pod 多一层 template(2 空格)+template.spec(2 空格)
+  # volumeMounts: Pod 4 空格 → Deploy 8 空格,补 4
+  # volumes:      Pod 2 空格 → Deploy 4 空格,补 2
+  if [ "$CHOICE" != "1" ]; then
+    VOLUME_MOUNT=$(printf '%s\n' "$VOLUME_MOUNT" | sed 's/^/    /')
+    VOLUME_DEF=$(printf '%s\n' "$VOLUME_DEF" | sed 's/^/  /')
+  fi
+fi
 
 # Create the corresponding YAML file based on user choice and apply it
 case $CHOICE in
